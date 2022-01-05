@@ -18,6 +18,21 @@
  * Authored by: Corentin Noël <corentin@elementary.io>
  */
 
+namespace Granite {
+    public const string STYLE_CLASS_WARNING = "warning";
+    public const string STYLE_CLASS_VIEW = "view";
+
+    public class HeaderLabel : Gtk.Box {
+        public HeaderLabel (string label) {
+            var label_widget = new Gtk.Label (label);
+            label_widget.add_css_class (Granite.STYLE_CLASS_H4_LABEL);
+
+            append (label_widget);
+            halign = Gtk.Align.START;
+        }
+    }
+}
+
 public class Installer.App : Gtk.Application {
     construct {
         application_id = "io.elementary.installer";
@@ -27,7 +42,8 @@ public class Installer.App : Gtk.Application {
 
     public override void activate () {
         var window = new MainWindow ();
-        window.show_all ();
+        window.present ();
+
         this.add_window (window);
     }
 }

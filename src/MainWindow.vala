@@ -17,8 +17,8 @@
  * Authored by: Corentin Noël <corentin@elementary.io>
  */
 
-public class Installer.MainWindow : Hdy.Window {
-    private Hdy.Deck deck;
+public class Installer.MainWindow : Gtk.Window {
+    private Adw.Leaflet leaflet;
 
     private AccountView account_view;
     private LanguageView language_view;
@@ -38,12 +38,12 @@ public class Installer.MainWindow : Hdy.Window {
     construct {
         language_view = new LanguageView ();
 
-        deck = new Hdy.Deck () {
+        leaflet = new Adw.Leaflet () {
             can_swipe_back = true
         };
-        deck.add (language_view);
+        leaflet.append (language_view);
 
-        add (deck);
+        child = leaflet;
 
         language_view.next_step.connect (() => load_keyboard_view ());
     }
@@ -64,8 +64,8 @@ public class Installer.MainWindow : Hdy.Window {
 
         keyboard_layout_view = new KeyboardLayoutView ();
 
-        deck.add (keyboard_layout_view);
-        deck.visible_child = keyboard_layout_view;
+        leaflet.append (keyboard_layout_view);
+        leaflet.visible_child = keyboard_layout_view;
 
         keyboard_layout_view.next_step.connect (() => load_account_view ());
     }
@@ -77,8 +77,8 @@ public class Installer.MainWindow : Hdy.Window {
 
         account_view = new AccountView ();
 
-        deck.add (account_view);
-        deck.visible_child = account_view;
+        leaflet.append (account_view);
+        leaflet.visible_child = account_view;
 
         account_view.next_step.connect (on_finish);
     }

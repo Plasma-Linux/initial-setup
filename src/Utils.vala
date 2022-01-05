@@ -81,7 +81,7 @@ namespace Utils {
                 error_dialog.show_error_details (error_message);
             }
 
-            error_dialog.run ();
+            error_dialog.present ();
             error_dialog.destroy ();
         }
 
@@ -216,7 +216,7 @@ namespace Utils {
             }
 
 
-            error_dialog.run ();
+            error_dialog.present ();
             error_dialog.destroy ();
 
             return false;
